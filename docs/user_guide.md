@@ -1,6 +1,8 @@
-## Getting started with the Courtgrabber CLI
+# User Guide
 
-The following user guide walks you through how to use Courtgrabber from the command line. If you would like to learn more about the Courtgrabber REST API, please refer to its [reference documentation](./api_reference.md). 
+The following user guide walks you through how to use Courtgrabber from the command line. If you would like to learn more about the Courtgrabber REST API, please refer to the [developer guide](/docs/api_reference.md). 
+
+## Key terminology
 
 The Courtgrabber CLI requires minimal set-up and uses only a few simple commands. First, let's define a few key terms.
 
@@ -34,10 +36,11 @@ The Courtgrabber CLI requires minimal set-up and uses only a few simple commands
 
   <dt>Add a second player</dt>
   <dd>If you are not reserving a ball machine, you must add a second player.</dd>
+</dl>
 
-## Using the Courtgrabber CLI
+## Courtgrabber commands
 
-Now that you know the key terminology, it's time to install Courtgrabber and start requesting tennis courts. The steps below explain how to use the command line to install Courtgrabber, login to the service, create a reservation request, list your requests, cancel a request, and logout. You will also learn how to find help if you get stuck.
+Now that you know the key terminology, it's time to install Courtgrabber and start requesting tennis courts. The steps below explain how to use the command line to install Courtgrabber, log into the service, create a reservation request, list your requests, cancel a request, and logout. You will also learn how to find help if you get stuck.
 
   * [Opening the command-line interface](#opening-the-command-line-interface)
   * [Installing Courtgrabber](#installing-courtgrabber)
@@ -64,7 +67,8 @@ You now see a mostly empty box with a command prompt.
 
 Follow these five steps to install the Courtgrabber CLI on your computer.
 
-> **NOTE**: The Courtgrabber CLI is currently supported only on MacOS.
+!!! note 
+    The Courtgrabber CLI is currently supported only on MacOS.
 
 1. Visit https://github.com/ycombinator/courtgrabber/releases/latest.
 2. Click on the download link `courtgrabber-cli-darwin-amd64` in the Assets section at the bottom of the page.
@@ -100,7 +104,8 @@ Courtgrabber makes it easy to request a court reservation: just follow the promp
 7. Using the arrow keys, select `y` if you would like to reserve a ball machine. Otherwise, select `n`. Press `Enter`.
 8. Use the arrow keys to select whether or not you will have a second player and press `Enter.`
 
-> **NOTE**: If you are not using a ball machine, you must include a second player to reserve a court.
+!!! note 
+    If you are not using a ball machine, you must include a second player to reserve a court.
 
 The CLI displays a message with the Reservation Request ID.
 
@@ -122,7 +127,8 @@ You see a table displaying all of your pending requests in chronological order.
 
 While a request is still pending, you can cancel it from the Courtgrabber CLI. 
 
-> **NOTE**: Once a reservation is made, you must cancel it through your tennis club's reservation system.
+!!! note 
+    Once a reservation is made, you must cancel it through your tennis club's reservation system.
 
 1. While logged in, type `courtgrabber cancel` at the command prompt and press `Enter`.
 2. Using the up and down arrow keys, scroll through the list of your pending requests until you come to the one you wish to cancel. Press `Enter`. The CLI asks you to confirm that you want to cancel the reservation.
