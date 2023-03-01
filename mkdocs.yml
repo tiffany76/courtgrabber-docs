@@ -2,9 +2,9 @@ site_name: Courtgrabber Docs
 
 nav:
   - About: index.md
+  - Getting Started: getting_started.md
   - User Guide: user_guide.md
   - Developer Guide: api_reference.md
 
 markdown_extensions:
     - admonition
-    
