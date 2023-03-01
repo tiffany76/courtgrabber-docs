@@ -52,7 +52,7 @@ You need to open your terminal to install and use Courtgrabber.
 You now see a mostly empty box with a command prompt. 
 
 *Figure 1: Opening the command-line interface.*
-![Opening the command-line interface.](/docs/images/opening_the_cli.gif "Opening the command-line interface.")
+![Opening the command-line interface.](/images/opening_the_cli.gif "Opening the command-line interface.")
 
 ### Installing Courtgrabber
 
