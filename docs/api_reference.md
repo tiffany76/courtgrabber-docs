@@ -1,4 +1,4 @@
-## Overview of the Courtgrabber REST API
+# The Courtgrabber REST API
 
 The following documentation explains the Courtgrabber REST API. If you would like to use the Courtgrabber CLI, please refer to the [user guide](./user_guide.md). 
 
@@ -6,7 +6,7 @@ The Courtgrabber API is an HTTP-based, RESTful service that interfaces with tenn
 
 Courtgrabber's base URL is [https://courtgrabber.herokuapp.com/api/](https://courtgrabber.herokuapp.com/api/). The API has five endpoints, and it accepts JSON in request bodies and returns JSON in response bodies. 
 
-### Workflow 
+## Workflow 
 
 A user's typical workflow might look like this: login to Courtgrabber, add a new reservation request, verify that the request was successful, and then logout. Here are the corresponding API calls for these tasks:
 
@@ -17,23 +17,15 @@ A user's typical workflow might look like this: login to Courtgrabber, add a new
 
 Users can also cancel pending requests. That API call is [`DELETE /api/reservation-requests/{id}`](#canceling-a-reservation-request).
 
-### Authentication
+## Authentication
 
 The first call to `/login` specifies the member's club email address and password as a JSON object in the body. A response of `200 OK` includes a bearer token with a validity of 30 minutes. All other endpoints, including `/logout`, take the bearer token in the header (`Authorization: Bearer {token}`). Each use of the token, except with `/logout`, extends the token's validity for another 30 minutes.
 
-## Courtgrabber API reference documentation
+# Reference documentation
 
 This section explains Courtgrabber's resources, endpoints, and status codes.
 
-  * [Resources](#resources)
-  * [Logging into Courtgrabber](#logging-into-courtgrabber)
-  * [Requesting a tennis court reservation](#requesting-a-tennis-court-reservation)
-  * [Retrieving a list of reservation requests](#retrieving-a-list-of-reservation-requests)
-  * [Canceling a reservation request](#canceling-a-reservation-request)
-  * [Logging out of Courtgrabber](#logging-out-of-courtgrabber)
-  * [Status codes and error messages](#status-codes-and-error-messages)
-
-### Resources
+## Resources
 
 The Courtgrabber API has three resources:
 
@@ -50,22 +42,22 @@ Use the Logout API call to terminate the current Courtgrabber session.
 #### `/api/reservation-requests`
 Reservation Requests is the core Courtgrabber resource. Use API calls against it to create new requests, view existing requests, or cancel requests. 
 
-### Logging into Courtgrabber
+## Logging into Courtgrabber
 Authenticates a user and grants them access for a Courtgrabber session.
 
-#### URL
+### URL
 ```
 POST {base_url}/api/login
 ```
 
-#### Request Body
+### Request Body
 
 | **Field**      |   **Description**                        | **Type**  | **Required**   |
 | ---------------| ---------------------------------------- | --------- | -------------- |
 | username       | User's tennis club account email address | string    | Required       |
 | password       | User's tennis club account email password| string    | Required       |
 
-#### Sample Request
+### Sample Request
 ```
 POST {base_url}/api/login
 ```
@@ -76,13 +68,13 @@ POST {base_url}/api/login
 }
 ```
 
-#### Response Body
+### Response Body
 
 | **Field**            |   **Description**                                      | **Type**  | 
 | -------------------- | ------------------------------------------------------ | --------- | 
 | bearer_token         | Authorizes access to authenticated user for 30 minutes | string    | 
 
-#### Sample Response
+### Sample Response
 ```
 200 OK
 ```
@@ -92,21 +84,21 @@ POST {base_url}/api/login
 }
 ```
 
-### Requesting a tennis court reservation
+## Requesting a tennis court reservation
 Initiates a reservation request to the tennis club's software.
 
-#### URL
+### URL
 ```
 POST {base_url}/api/reservation-requests
 ```
 
-#### Headers
+### Headers
 
 | **Header Name**                    |   **Description**                                    | **Required** | **Values**      |
 | ---------------------------------- | ---------------------------------------------------- | ------------ | --------------- |
 | [Authorization](#authentication)   | Credentials to authenticate user with server         | Required     | Bearer: {token} |
 
-#### Request Body
+### Request Body
 
 | **Field**  |   **Description**                             | **Type**         | **Required**  | **Notes**          |
 | ---------- | --------------------------------------------- | ---------------- | ------------- | -----------------  |
@@ -117,7 +109,7 @@ POST {base_url}/api/reservation-requests
 | ball_machine | Reserve ball machine along with court       | Boolean          | Required      |
 | players    | Club members who will play, with host listed first | array of strings | Required | Values: members linked to login account |
 
-#### Sample Request
+### Sample Request
 ```
 POST {base_url}/api/reservation-requests
 Authorization: Bearer: {token}
@@ -142,7 +134,7 @@ Authorization: Bearer: {token}
 }
 ```
 
-#### Response Body
+### Response Body
 
 | **Field**     |   **Description**                           | **Type**  | **Notes**                      |
 | ------------- | ------------------------------------------- | --------- | ------------------------------ |
@@ -154,7 +146,7 @@ Authorization: Bearer: {token}
 | ball_machine  | Reserve ball machine along with court       | Boolean   | 
 | players       | Club members who will play, with host listed first | array of strings | Values: members linked to login account |
 
-#### Sample Response
+### Sample Response
 ```
 200 OK
 ```
@@ -179,27 +171,27 @@ Authorization: Bearer: {token}
 }
 ```
 
-### Retrieving a list of reservation requests
+## Retrieving a list of reservation requests
 Returns the user's reservation requests.
 
-#### URL
+### URL
 ```
 GET {base_url}/api/reservation-requests
 ```
 
-#### Headers
+### Headers
 
 | **Header Name**                    |   **Description**                                    | **Required** | **Values**      |
 | ---------------------------------- | ---------------------------------------------------- | ------------ | --------------- |
 | [Authorization](#authentication)   | Credentials to authenticate user with server         | Required     | Bearer: {token} |
 
-#### Sample Request
+### Sample Request
 ```
 GET {base_url}/api/reservation-requests 
 Authorization: Bearer: {token}
 ```
 
-#### Response Body
+### Response Body
 
 | **Field**            |   **Description**                                  | **Type**  | **Notes**                 |
 | -------------------- | -------------------------------------------------- | --------- | ------------------------- |
@@ -214,7 +206,7 @@ Authorization: Bearer: {token}
 | court                | The court number that was successfully reserved    | number    |                           |
 | start_time           | The start time that was successfully reserved      | string    | Format: ISO 8601 YYYY-MM-DDThh:mm:ssTZD |
 
-#### Sample Response
+### Sample Response
 ```
 200 OK
 ```
@@ -264,41 +256,42 @@ Authorization: Bearer: {token}
 }
 ```
 
-### Canceling a reservation request
+## Canceling a reservation request
 Deletes a pending reservation request. 
 
-> **NOTE**: Requests that secure a court reservation cannot be canceled through Courtgrabber; they must be canceled in the tennis club's software.
+!!! note
+    Requests that secure a court reservation cannot be canceled through Courtgrabber; they must be canceled in the tennis club's software.
 
-#### URL
+### URL
 ```
 DELETE {base_url}/api/reservation-requests/{id}
 ```
 
-#### Parameter
+### Parameter
 
 | **Parameter**   |   **Description**                           | **Type** | **Required**    |
 | --------------- | ------------------------------------------- | -------- | --------------- |
 |  id             | Unique identifier for a reservation request | string   | Required        |
 
-#### Headers
+### Headers
 
 | **Header Name**                    |   **Description**                                    | **Required** | **Values**      |
 | ---------------------------------- | ---------------------------------------------------- | ------------ | --------------- |
 | [Authorization](#authentication)   | Credentials to authenticate user with server         | Required     | Bearer: {token} |
 
-#### Sample Request
+### Sample Request
 ```
 DELETE {base_url}/api/reservation-requests/e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b
 Authorization: Bearer: {token}
 ```
 
-#### Response Body
+### Response Body
 
 | **Field**            |   **Description**              | **Type**  | **Notes**                                         |
 | -------------------- | -------------------------------| --------- | ------------------------------------------------- |
 | message              | Status of delete request       | string    | Values: reservation request deleted; delete failed|
 
-#### Sample Response
+### Sample Response
 ```
 200 OK
 ```
@@ -308,32 +301,32 @@ Authorization: Bearer: {token}
 }
 ```
 
-### Logging out of Courtgrabber
+## Logging out of Courtgrabber
 Terminates a Courtgrabber session. 
 
-#### URL
+### URL
 ```
 POST {base_url}/api/logout
 ```
 
-#### Headers
+### Headers
 
 | **Header Name**                    |   **Description**                                    | **Required** | **Values**      |
 | ---------------------------------- | ---------------------------------------------------- | ------------ | --------------- |
 | [Authorization](#authentication)   | Credentials to authenticate user with server         | Required     | Bearer: {token} |
 
-#### Sample Request
+### Sample Request
 ```
 POST {base_url}/api/logout
 Authorization: Bearer: {token}
 ```
 
-#### Sample Response
+### Sample Response
 ```
 204 No Content
 ```
 
-### Status codes and error messages
+## Status codes and error messages
 The following table lists the HTTP status codes and their meanings. 
 
 | **Code**             |   **Description**                                                                       | 
