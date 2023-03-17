@@ -4,7 +4,7 @@ Welcome to the Courtgrabber Documentation public repository. These files have be
 
 # Installing MkDocs
 
-Run the following command from your command line to install MkDocs.
+Run the following command from your command line to install MkDocs:
 
 `pip install mkdocs`
 
