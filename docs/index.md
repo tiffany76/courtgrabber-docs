@@ -14,7 +14,7 @@ Let's say you want to play tennis Tuesday at 8:00 AM, and your club has specifie
 
 ## How do I get Courtgrabber to work on my machine?
 
-You can submit reservation requests using the Courtgrabber service via its command-line interface (CLI). The [user guide](user_guide) includes instructions for downloading, installing, and using the CLI. Please note that the Courtgrabber CLI is currently supported only on MacOS.
+You can submit reservation requests using the Courtgrabber service via its command-line interface (CLI). Use the [Getting Started page](getting_started) to find out how to download and install the CLI. The [user guide](user_guide) includes instructions for performing common tasks with the CLI. Please note that the Courtgrabber CLI is currently supported only on MacOS.
 
 ## How do I build on the Courtgrabber project?
 
