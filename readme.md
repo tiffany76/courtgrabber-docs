@@ -6,7 +6,9 @@ Welcome to the Courtgrabber Documentation public repository. These files have be
 
 Run the following command from your command line to install MkDocs:
 
-`pip install mkdocs`
+```
+pip install mkdocs
+```
 
 If you encounter any issues, refer to the [MkDocs Installation Guide](https://www.mkdocs.org/user-guide/installation/) for more detailed instructions.
 
@@ -18,6 +20,8 @@ If you encounter any issues, refer to the [MkDocs Installation Guide](https://ww
 
 From your command line, navigate to your new project directory and then run the following command:
 
-`mkdocs serve`
+```
+mkdocs serve
+```
 
 With the server running, open `http://127.0.0.1:8000/` in your browser to view Courtgrabber's documentation.
