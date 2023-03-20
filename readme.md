@@ -1,6 +1,6 @@
 # Welcome 
 
-Welcome to the Courtgrabber Documentation public repository. These files have been formatted according to the MkDocs theme and are best viewed on an MkDocs site. We have not yet found a permanent hosting service, but we hope to make the move soon. In the meantime, you can view the files by downloading MkDocs, cloning this repo, and running the built-in MkDocs dev server to view the site locally.
+Welcome to the Courtgrabber Documentation public repository. These files have been formatted according to the [MkDocs](https://www.mkdocs.org/) theme and are best viewed on an MkDocs site. We have not yet found a permanent hosting service, but we hope to make the move soon. In the meantime, you can view the files by downloading MkDocs, cloning this repo, and running the built-in MkDocs dev server to view the site locally.
 
 ## Installing MkDocs
 
