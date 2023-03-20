@@ -12,7 +12,7 @@ If you encounter any issues, refer to the [MkDocs Installation Guide](https://ww
 
 ## Creating your Courtgrabber project
 
-[Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this repo to your local machine. Your project directory should contain the `mkdocs.yml` configuration file and a `docs` directory with four Markdown files and an `images` subdirectory.
+[Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this repo to your local machine. Your project directory should contain the `mkdocs.yml` configuration file and a `docs` directory with several Markdown files and an `images` subdirectory.
 
 ## Viewing the Courtgrabber MkDocs site
 
