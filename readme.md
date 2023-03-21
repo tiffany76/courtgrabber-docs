@@ -24,4 +24,4 @@ From your command line, navigate to your new project directory and then run the 
 mkdocs serve
 ```
 
-With the server running, open `http://127.0.0.1:8000/` in your browser to view Courtgrabber's documentation.
+With the server running, open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser to view Courtgrabber's documentation.
