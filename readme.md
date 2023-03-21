@@ -25,3 +25,5 @@ mkdocs serve
 ```
 
 With the server running, open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser to view Courtgrabber's documentation.
+
+To stop the dev server at any time, hit `CTRL + C` in the terminal window.
