@@ -7,4 +7,4 @@ nav:
   - Developer Guide: api_reference.md
 
 markdown_extensions:
-    - admonition
+  - admonition
