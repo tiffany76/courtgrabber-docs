@@ -1,4 +1,4 @@
-# About Courtgrabber
+# Courtgrabber Documentation
 
 Welcome to the documentation site for the Courtgrabber service. If you've never used Courtgrabber, read on to find out why you should give it a try.
 
@@ -14,8 +14,8 @@ Let's say you want to play tennis Tuesday at 8:00 AM, and your club has specifie
 
 ## How do I get Courtgrabber to work on my machine?
 
-You can submit reservation requests using the Courtgrabber service via its command-line interface (CLI). The [user guide](/docs/user_guide.md) includes instructions for downloading, installing, and using the CLI. Please note that the Courtgrabber CLI is currently supported only on MacOS.
+You can submit reservation requests using the Courtgrabber service via its command-line interface (CLI). Use the [Getting Started page](./getting_started.md) to find out how to download and install the CLI. The [user guide](./user_guide.md) includes instructions for performing common tasks with the CLI. Please note that the Courtgrabber CLI is currently supported only on MacOS.
 
 ## How do I build on the Courtgrabber project?
 
-Courtgrabber has a REST API that communicates with tennis club software. The [developer guide](/docs/api_reference.md) contains the information you will need to integrate Courtgrabber with your own project.
+Courtgrabber has a REST API that communicates with tennis club software. The [developer guide](./api_reference.md) contains the information you will need to integrate Courtgrabber with your own project.
