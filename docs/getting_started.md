@@ -67,4 +67,4 @@ Follow these five steps to install the Courtgrabber CLI on your computer.
 4. To confirm the installation worked, run `~/Downloads/courtgrabber-cli-darwin-amd64 help`. You should see the Courtgrabber help menu.
 5. To rename and move the downloaded file, run `mv ~/Downloads/courtgrabber-cli-darwin-amd64 /usr/local/bin/courtgrabber`.
 
-You can now begin using Courtgrabber!
+You can now begin using Courtgrabber. Check out the [user guide](./user_guide.md) for detailed instructions.
