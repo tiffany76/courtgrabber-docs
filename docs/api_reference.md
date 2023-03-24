@@ -1,6 +1,6 @@
 # The Courtgrabber REST API
 
-The following documentation explains the Courtgrabber REST API. If you would like to use the Courtgrabber CLI, please refer to the [user guide](/user_guide). 
+The following documentation explains the Courtgrabber REST API. If you would like to use the Courtgrabber CLI, please refer to the [user guide](./user_guide.md). 
 
 The Courtgrabber API is an HTTP-based, RESTful service that interfaces with tennis club reservation software to make court reservations on behalf of club members. Most club software sets a reservation window. With Courtgrabber, users can submit a request outside that window, automating the reservation process.
 
