@@ -1,6 +1,6 @@
 # User Guide
 
-The following user guide walks you through how to use Courtgrabber from the command line. If you would like to learn more about the Courtgrabber REST API, please refer to the [developer guide](./api_reference.md). 
+The following user guide walks you through how to use Courtgrabber from the command line. You'll want to install Courtgrabber first; the [Getting Started page](./getting_started.md) tells you how to do that. If you would like to learn more about the Courtgrabber REST API, please refer to the [developer guide](./api_reference.md). 
 
 ## Logging into Courtgrabber
 
