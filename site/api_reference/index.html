@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Developer Guide - Courtgrabber Docs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/http.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="..">Courtgrabber Docs</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+          <!-- Main navigation -->
+          <nav class="nav">
+            <ul class="navbar-nav">
+              <li >
+                <a class="nav-link" href="..">About</a>
+              </li>
+              <li >
+                <a class="nav-link" href="../getting_started/">Getting Started</a>
+              </li>
+              <li >
+                <a class="nav-link" href="../user_guide/">User Guide</a>
+              </li>
+              <li class="active">
+                <a class="nav-link" href="./">Developer Guide</a>
+              </li>
+            </ul>
+          </nav>
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Developer Guide</li>
+  </ol>
+</nav>
+
+
+<h1 id="the-courtgrabber-rest-api">The Courtgrabber REST API</h1>
+<p>The following documentation explains the Courtgrabber REST API. If you would like to use the Courtgrabber CLI, please refer to the <a href="../user_guide/">user guide</a>. </p>
+<p>The Courtgrabber API is an HTTP-based, RESTful service that interfaces with tennis club reservation software to make court reservations on behalf of club members. Most club software sets a reservation window. With Courtgrabber, users can submit a request outside that window, automating the reservation process.</p>
+<p>Courtgrabber's base URL is <a href="https://courtgrabber.herokuapp.com/api/">https://courtgrabber.herokuapp.com/api/</a>. The API has five endpoints, and it accepts JSON in request bodies and returns JSON in response bodies. </p>
+<h2 id="workflow">Workflow</h2>
+<p>A user's typical workflow might look like this: login to Courtgrabber, add a new reservation request, verify that the request was successful, and then logout. Here are the corresponding API calls for these tasks:</p>
+<ul>
+<li><a href="#logging-into-courtgrabber"><code>POST /login</code></a></li>
+<li><a href="#requesting-a-tennis-court-reservation"><code>POST /reservation-requests</code></a></li>
+<li><a href="#retrieving-a-list-of-reservation-requests"><code>GET /reservation-requests</code></a></li>
+<li><a href="#logging-out-of-courtgrabber"><code>POST /logout</code></a></li>
+</ul>
+<p>Users can also cancel pending requests. That API call is <a href="#canceling-a-reservation-request"><code>DELETE /api/reservation-requests/{id}</code></a>.</p>
+<h2 id="authentication">Authentication</h2>
+<p>The first call to <code>/login</code> specifies the member's club email address and password as a JSON object in the body. A response of <code>200 OK</code> includes a bearer token with a validity of 30 minutes. All other endpoints, including <code>/logout</code>, take the bearer token in the header (<code>Authorization: Bearer {token}</code>). Each use of the token, except with <code>/logout</code>, extends the token's validity for another 30 minutes.</p>
+<h1 id="reference-documentation">Reference documentation</h1>
+<p>This section explains Courtgrabber's resources, endpoints, and status codes.</p>
+<h2 id="resources">Resources</h2>
+<p>The Courtgrabber API has three resources:</p>
+<ul>
+<li><code>/api/login</code></li>
+<li><code>/api/logout</code></li>
+<li><code>/api/reservation-requests</code></li>
+</ul>
+<h4 id="apilogin"><code>/api/login</code></h4>
+<p>Use the Login API call to grant a club member access to Courtgrabber.</p>
+<h4 id="apilogout"><code>/api/logout</code></h4>
+<p>Use the Logout API call to terminate the current Courtgrabber session.</p>
+<h4 id="apireservation-requests"><code>/api/reservation-requests</code></h4>
+<p>Reservation Requests is the core Courtgrabber resource. Use API calls against it to create new requests, view existing requests, or cancel requests. </p>
+<h2 id="logging-into-courtgrabber">Logging into Courtgrabber</h2>
+<p>Authenticates a user and grants them access for a Courtgrabber session.</p>
+<h3 id="url">URL</h3>
+<pre><code>POST {base_url}/api/login
+</code></pre>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Required</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>User's tennis club account email address</td>
+<td>string</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>password</td>
+<td>User's tennis club account email password</td>
+<td>string</td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-request">Sample Request</h3>
+<pre><code>POST {base_url}/api/login
+</code></pre>
+<pre><code class="language-json">{
+    &quot;username&quot;: &quot;member@tennisclub.com&quot;,
+    &quot;password&quot;: &quot;***************&quot;    
+}
+</code></pre>
+<h3 id="response-body">Response Body</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bearer_token</td>
+<td>Authorizes access to authenticated user for 30 minutes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-response">Sample Response</h3>
+<pre><code>200 OK
+</code></pre>
+<pre><code class="language-json">{
+    &quot;bearer_token&quot;: &quot;Y0jzJLkuhPudMf9J&quot;
+}
+</code></pre>
+<h2 id="requesting-a-tennis-court-reservation">Requesting a tennis court reservation</h2>
+<p>Initiates a reservation request to the tennis club's software.</p>
+<h3 id="url_1">URL</h3>
+<pre><code>POST {base_url}/api/reservation-requests
+</code></pre>
+<h3 id="headers">Headers</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Header Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Required</strong></th>
+<th><strong>Values</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#authentication">Authorization</a></td>
+<td>Credentials to authenticate user with server</td>
+<td>Required</td>
+<td>Bearer: {token}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="request-body_1">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Required</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+<td>Date to reserve tennis court</td>
+<td>string</td>
+<td>Required</td>
+<td>Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>start_times</td>
+<td>Time to reserve tennis court, in order of preference</td>
+<td>array of strings</td>
+<td>Required</td>
+<td>Format: HHMM in 24H time</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>Length of time to reserve tennis court</td>
+<td>string</td>
+<td>Required</td>
+<td>Values: 30m, 60m, 90m</td>
+</tr>
+<tr>
+<td>courts</td>
+<td>Tennis court number to reserve, in order of preference</td>
+<td>array of numbers</td>
+<td>Required</td>
+<td></td>
+</tr>
+<tr>
+<td>ball_machine</td>
+<td>Reserve ball machine along with court</td>
+<td>Boolean</td>
+<td>Required</td>
+<td></td>
+</tr>
+<tr>
+<td>players</td>
+<td>Club members who will play, with host listed first</td>
+<td>array of strings</td>
+<td>Required</td>
+<td>Values: members linked to login account</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-request_1">Sample Request</h3>
+<pre><code>POST {base_url}/api/reservation-requests
+Authorization: Bearer: {token}
+</code></pre>
+<pre><code class="language-json">{
+    &quot;date&quot;: &quot;2022-12-09&quot;,
+    &quot;start_times&quot;: [
+        &quot;1000&quot;,
+        &quot;1030&quot;
+    ],
+    &quot;duration&quot;: &quot;90m&quot;,
+    &quot;courts&quot;: [
+        1,
+        2
+    ],
+    &quot;ball_machine&quot;: false,
+    &quot;players&quot;: [
+        &quot;Alice Jones&quot;,
+        &quot;Bob Jones&quot;
+    ]
+}
+</code></pre>
+<h3 id="response-body_1">Response Body</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>Unique identifier for a reservation request</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>date</td>
+<td>Date to reserve tennis court</td>
+<td>string</td>
+<td>Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>start_times</td>
+<td>Time to reserve tennis court, in order of preference</td>
+<td>array of strings</td>
+<td>Format: HHMM in 24H time</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>Length of time to reserve tennis court</td>
+<td>string</td>
+<td>Values: 30m, 60m, 90m</td>
+</tr>
+<tr>
+<td>courts</td>
+<td>Tennis court number to reserve, in order of preference</td>
+<td>array of numbers</td>
+<td></td>
+</tr>
+<tr>
+<td>ball_machine</td>
+<td>Reserve ball machine along with court</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>players</td>
+<td>Club members who will play, with host listed first</td>
+<td>array of strings</td>
+<td>Values: members linked to login account</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-response_1">Sample Response</h3>
+<pre><code>200 OK
+</code></pre>
+<pre><code class="language-json">{
+    &quot;id&quot;: &quot;e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b&quot;,
+    &quot;date&quot;: &quot;2022-12-09&quot;,
+    &quot;start_times&quot;: [
+        &quot;1000&quot;,
+        &quot;1030&quot;
+    ],
+    &quot;duration&quot;: &quot;90m&quot;,
+    &quot;courts&quot;: [
+        1,
+        2
+    ],
+    &quot;ball_machine&quot;: false,
+    &quot;players&quot;: [
+        &quot;Alice Jones&quot;,
+        &quot;Bob Jones&quot;
+    ]
+}
+</code></pre>
+<h2 id="retrieving-a-list-of-reservation-requests">Retrieving a list of reservation requests</h2>
+<p>Returns the user's reservation requests.</p>
+<h3 id="url_2">URL</h3>
+<pre><code>GET {base_url}/api/reservation-requests
+</code></pre>
+<h3 id="headers_1">Headers</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Header Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Required</strong></th>
+<th><strong>Values</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#authentication">Authorization</a></td>
+<td>Credentials to authenticate user with server</td>
+<td>Required</td>
+<td>Bearer: {token}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-request_2">Sample Request</h3>
+<pre><code>GET {base_url}/api/reservation-requests 
+Authorization: Bearer: {token}
+</code></pre>
+<h3 id="response-body_2">Response Body</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reservation-requests</td>
+<td>Data on when, where, and for whom to reserve court</td>
+<td>array</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>Unique identifier for reservation request</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>date</td>
+<td>Date to reserve tennis court</td>
+<td>string</td>
+<td>Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>start_times</td>
+<td>Time to reserve tennis court, in order of preference</td>
+<td>array of strings</td>
+<td>Format: HHMM in 24H time</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>Length of time to reserve tennis court</td>
+<td>string</td>
+<td>Values: 30m, 60m, 90m</td>
+</tr>
+<tr>
+<td>courts</td>
+<td>Tennis court number to reserve, in order of preference</td>
+<td>array of numbers</td>
+<td></td>
+</tr>
+<tr>
+<td>ball_machine</td>
+<td>Reserve ball machine along with court</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>players</td>
+<td>Club members who will play, with host listed first</td>
+<td>array of strings</td>
+<td>Values: members linked to login account</td>
+</tr>
+<tr>
+<td>court</td>
+<td>The court number that was successfully reserved</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>The start time that was successfully reserved</td>
+<td>string</td>
+<td>Format: ISO 8601 YYYY-MM-DDThh:mm:ssTZD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-response_2">Sample Response</h3>
+<pre><code>200 OK
+</code></pre>
+<pre><code class="language-json">{
+    &quot;reservation-requests&quot;: [
+        {
+            &quot;id&quot;: &quot;e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b&quot;,
+            &quot;date&quot;: &quot;2022-12-05&quot;,
+            &quot;start_times&quot;: [
+                &quot;0700&quot;
+            ],
+            &quot;duration&quot;: &quot;90m&quot;,
+            &quot;courts&quot;: [
+                5,
+                9
+            ],
+            &quot;ball_machine&quot;: true,
+            &quot;players&quot;: [
+                &quot;Alice Jones&quot;,
+                &quot;Bob Jones&quot;
+            ]
+        },
+        {
+            &quot;id&quot;: &quot;7c98610d-2429-4ed8-8cc2-33123e8a6fa9&quot;,
+            &quot;date&quot;: &quot;2022-11-19&quot;,
+            &quot;start_times&quot;: [
+                &quot;1300&quot;,
+                &quot;1330&quot;,
+                &quot;1400&quot;
+            ],
+            &quot;duration&quot;: &quot;90m&quot;,
+            &quot;courts&quot;: [
+                1,
+                2,
+                3
+            ],
+            &quot;ball_machine&quot;: false,
+            &quot;players&quot;: [
+                &quot;Carrie Jones&quot;,
+                &quot;Alice Jones&quot;
+            ],
+            &quot;court&quot;: 1,
+            &quot;start_time&quot;: &quot;2022-11-19T13:00:00-08:00&quot;
+        }
+    ]
+}
+</code></pre>
+<h2 id="canceling-a-reservation-request">Canceling a reservation request</h2>
+<p>Deletes a pending reservation request. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Requests that secure a court reservation cannot be canceled through Courtgrabber; they must be canceled in the tennis club's software.</p>
+</div>
+<h3 id="url_3">URL</h3>
+<pre><code>DELETE {base_url}/api/reservation-requests/{id}
+</code></pre>
+<h3 id="parameter">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Required</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>Unique identifier for a reservation request</td>
+<td>string</td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+<h3 id="headers_2">Headers</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Header Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Required</strong></th>
+<th><strong>Values</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#authentication">Authorization</a></td>
+<td>Credentials to authenticate user with server</td>
+<td>Required</td>
+<td>Bearer: {token}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-request_3">Sample Request</h3>
+<pre><code>DELETE {base_url}/api/reservation-requests/e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b
+Authorization: Bearer: {token}
+</code></pre>
+<h3 id="response-body_3">Response Body</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>Status of delete request</td>
+<td>string</td>
+<td>Values: reservation request deleted; delete failed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-response_3">Sample Response</h3>
+<pre><code>200 OK
+</code></pre>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;reservation request deleted&quot;
+}
+</code></pre>
+<h2 id="logging-out-of-courtgrabber">Logging out of Courtgrabber</h2>
+<p>Terminates a Courtgrabber session. </p>
+<h3 id="url_4">URL</h3>
+<pre><code>POST {base_url}/api/logout
+</code></pre>
+<h3 id="headers_3">Headers</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Header Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Required</strong></th>
+<th><strong>Values</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#authentication">Authorization</a></td>
+<td>Credentials to authenticate user with server</td>
+<td>Required</td>
+<td>Bearer: {token}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-request_4">Sample Request</h3>
+<pre><code>POST {base_url}/api/logout
+Authorization: Bearer: {token}
+</code></pre>
+<h3 id="sample-response_4">Sample Response</h3>
+<pre><code>204 No Content
+</code></pre>
+<h2 id="status-codes-and-error-messages">Status codes and error messages</h2>
+<p>The following table lists the HTTP status codes and their meanings. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Code</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 OK</td>
+<td>Call was successful: if relevant, response details included in body</td>
+</tr>
+<tr>
+<td>204 No Content</td>
+<td>Call was successful: no details provided in response</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>Call was unsuccessful: required field(s) omitted</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>Call was unsuccessful: incorrect endpoint used</td>
+</tr>
+</tbody>
+</table>
+<p>For unsuccessful calls, the API will return the corresponding HTTP status code with this response body:</p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;&lt;some error message&gt;&quot;
+} 
+</code></pre>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#the-courtgrabber-rest-api">The Courtgrabber REST API</a></li>
+                <li class="nav-item">
+                    <a href="#workflow" class="nav-link">Workflow</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#authentication" class="nav-link">Authentication</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#reference-documentation">Reference documentation</a></li>
+                <li class="nav-item">
+                    <a href="#resources" class="nav-link">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#logging-into-courtgrabber" class="nav-link">Logging into Courtgrabber</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#requesting-a-tennis-court-reservation" class="nav-link">Requesting a tennis court reservation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#retrieving-a-list-of-reservation-requests" class="nav-link">Retrieving a list of reservation requests</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#canceling-a-reservation-request" class="nav-link">Canceling a reservation request</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#logging-out-of-courtgrabber" class="nav-link">Logging out of Courtgrabber</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#status-codes-and-error-messages" class="nav-link">Status codes and error messages</a>
+                </li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../js/base.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

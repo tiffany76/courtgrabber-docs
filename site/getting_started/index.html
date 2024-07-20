@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Getting Started - Courtgrabber Docs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/http.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="..">Courtgrabber Docs</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+          <!-- Main navigation -->
+          <nav class="nav">
+            <ul class="navbar-nav">
+              <li >
+                <a class="nav-link" href="..">About</a>
+              </li>
+              <li class="active">
+                <a class="nav-link" href="./">Getting Started</a>
+              </li>
+              <li >
+                <a class="nav-link" href="../user_guide/">User Guide</a>
+              </li>
+              <li >
+                <a class="nav-link" href="../api_reference/">Developer Guide</a>
+              </li>
+            </ul>
+          </nav>
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
+  </ol>
+</nav>
+
+
+<h1 id="getting-started">Getting Started</h1>
+<p>The Courtgrabber CLI requires minimal set-up and only a few commands to get started.</p>
+<h2 id="key-terminology">Key terminology</h2>
+<p>First, let's define a few key terms.</p>
+<dl>
+  <dt>Command-line interface (CLI)</dt>
+  <dd>Also known as your computer's <strong>terminal</strong>, the command-line interface is a tool for communicating with your computer via text. Instead of navigating with a mouse or selecting a program based on its icon, you can interact with your machine using only keyboard commands.</dd>
+
+  <dt>Command prompt</dt>
+  <dd>The command prompt is the text at the beginning of each command line in a CLI. On a Mac, it usually looks something like <code>user ~ $</code>. The prompt tells you which directory, or folder, you are currently working in.</dd>
+
+  <dt>Reservation request</dt>
+  <dd>A reservation request is a pending message to the tennis club's reservation software that includes the date, start time, duration, court number, host player's name, ball machine necessity, and if required, the second player's name. Upon creation, Courtgrabber assigns each reservation request a unique ID. The request remains pending until Courtgrabber secures the reservation. Once the reservation time elapses, the request is automatically deleted.</dd>
+
+  <dt>Desired date</dt>
+  <dd>The desired date is the day you want to play tennis. Courtgrabber accepts dates as YYYY-MM-DD, such as 2022-12-09.</dd>
+
+  <dt>Desired start time</dt>
+  <dd>The desired start time is when you want to start playing. Courtgrabber lets you list multiple start times in order of preference, in case your first choice is unavailable. The format is HHMM in 24 hour time with each choice separated by a comma (e.g. 1300,1330,1400).</dd>
+
+  <dt>Duration</dt>
+  <dd>Duration is the length of time you want to play. The options are 30, 60, or 90 minutes.</dd>
+
+  <dt>Court numbers</dt>
+  <dd>The court number corresponds to the tennis club's number. You can choose which court you want to reserve by entering a list of numbers, comma-separated in order of preference (e.g. 4,5,6).</dd>
+
+  <dt>Host player</dt>
+  <dd>The host player is the person responsible for the reservation.</dd>
+
+  <dt>Reserve ball machine</dt>
+  <dd>You can reserve a ball machine along with your court.</dd>
+
+  <dt>Add a second player</dt>
+  <dd>If you are not reserving a ball machine, you must add a second player.</dd>
+</dl>
+
+<h2 id="installation">Installation</h2>
+<p>Now that you know the key terminology, it's time to install Courtgrabber and start requesting tennis courts. </p>
+<h3 id="opening-the-command-line-interface">Opening the command-line interface</h3>
+<p>You need to open your terminal to install and use Courtgrabber.</p>
+<ol>
+<li>On your Mac computer, press the <code>command</code> or <code>⌘</code> key and the space bar at the same time.</li>
+<li>In the search box that appears, start typing <code>terminal</code> and press <code>Enter</code> once the Terminal program appears.</li>
+</ol>
+<p>You now see a mostly empty box with a command prompt. </p>
+<p><em>Figure 1: Opening the command-line interface.</em>
+<img alt="Opening the command-line interface." src="/images/opening_the_cli.gif" title="Opening the command-line interface." /></p>
+<h3 id="installing-courtgrabber">Installing Courtgrabber</h3>
+<p>Follow these five steps to install the Courtgrabber CLI on your computer.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Courtgrabber CLI is currently supported only on MacOS.</p>
+</div>
+<ol>
+<li>Visit https://github.com/ycombinator/courtgrabber/releases/latest.</li>
+<li>Click on the download link <code>courtgrabber-cli-darwin-amd64</code> in the Assets section at the bottom of the page.</li>
+<li>Make sure your computer can run the new file by going to your command line and entering <code>chmod 755 ~/Downloads/courtgrabber-cli-darwin-amd64</code>.</li>
+<li>To confirm the installation worked, run <code>~/Downloads/courtgrabber-cli-darwin-amd64 help</code>. You should see the Courtgrabber help menu.</li>
+<li>To rename and move the downloaded file, run <code>mv ~/Downloads/courtgrabber-cli-darwin-amd64 /usr/local/bin/courtgrabber</code>.</li>
+</ol>
+<p>You can now begin using Courtgrabber. Check out the <a href="../user_guide/">user guide</a> for detailed instructions.</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#getting-started">Getting Started</a></li>
+                <li class="nav-item">
+                    <a href="#key-terminology" class="nav-link">Key terminology</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#installation" class="nav-link">Installation</a>
+                </li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../js/base.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
