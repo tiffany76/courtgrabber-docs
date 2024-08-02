@@ -17,10 +17,10 @@ First, let's define a few key terms.
   <dd>A reservation request is a pending message to the tennis club's reservation software that includes the date, start time, duration, court number, host player's name, ball machine necessity, and if required, the second player's name. Upon creation, Courtgrabber assigns each reservation request a unique ID. The request remains pending until Courtgrabber secures the reservation. Once the reservation time elapses, the request is automatically deleted.</dd>
 
   <dt>Desired date</dt>
-  <dd>The desired date is the day you want to play tennis. Courtgrabber accepts dates as YYYY-MM-DD, such as <code>2023-12-09</code>.</dd>
+  <dd>The desired date is the day you want to play tennis. Courtgrabber accepts dates as YYYY-MM-DD, such as <code>2022-12-09</code>.</dd>
 
   <dt>Desired start time</dt>
-  <dd>The desired start time is when you want to start playing. Courtgrabber lets you list multiple start times in order of preference, in case your first choice is unavailable. The format is HHMM in 24 hour time with each choice separated by a comma (for example, <code>1300,1330,1400</code>).</dd>
+  <dd>The desired start time is when you want to start playing. Courtgrabber lets you list multiple start times in order of preference, in case your first choice is unavailable. The format is HHMM in 24-hour time with each choice separated by a comma (for example, <code>1300,1330,1400</code>). Start times must be on the hour (:00) or half hour (:30).</dd>
 
   <dt>Duration</dt>
   <dd>Duration is the length of time you want to play. The options are 30, 60, or 90 minutes.</dd>
