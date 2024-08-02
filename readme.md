@@ -1,29 +1,13 @@
-# Welcome 
+# Welcome to Courtgrabber
 
-Welcome to the Courtgrabber Documentation public repository. These files have been formatted according to the [MkDocs](https://www.mkdocs.org/) theme and are best viewed on an MkDocs site. We have not yet found a permanent hosting service, but we hope to make the move soon. In the meantime, you can view the files by downloading MkDocs, cloning this repo, and running the built-in MkDocs dev server to view the site locally.
+Welcome to the source repository for the [Courtgrabber website](https://courtgrabber.netlify.app). The site is built using [MkDocs](https://www.mkdocs.org/) and is hosted on [Netlify](https://netlify.com).
 
-## Installing MkDocs
+## Contributing
 
-Run the following command from your command line to install MkDocs:
+- Raise an [issue](https://github.com/tiffany76/courtgrabber-docs/issues/new) for any changes or additions you'd like to see. Make sure to include a link to the heading or page, if relevant.
+- If you want to work on an issue, ask to be assigned in a comment. A maintainer will assign the issue to you. 
+- Follow the [fork-and-pull model](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models#fork-and-pull-model) to put up a PR.
 
-```
-pip install mkdocs
-```
+## License
 
-If you encounter any issues, refer to the [MkDocs Installation Guide](https://www.mkdocs.org/user-guide/installation/) for more detailed instructions.
-
-## Creating your Courtgrabber project
-
-[Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this repo to your local machine. Your project directory should contain the `mkdocs.yml` configuration file and a `docs` directory with several Markdown files and an `images` subdirectory.
-
-## Viewing the Courtgrabber MkDocs site
-
-From your command line, navigate to your new project directory and then run the following command:
-
-```
-mkdocs serve
-```
-
-With the server running, open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser to view Courtgrabber's documentation.
-
-To stop the dev server at any time, hit `CTRL + C` in the terminal window.
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0)
