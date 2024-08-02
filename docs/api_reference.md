@@ -10,7 +10,7 @@ Courtgrabber's base URL is [https://courtgrabber.herokuapp.com/api/](https://cou
 
 A user's typical workflow might look like this: login to Courtgrabber, add a new reservation request, verify that the request was successful, and then logout. Here are the corresponding API calls for these tasks:
 
-- [`POST /login`](#log-into-courtgrabber)
+- [`POST /login`](#login-to-courtgrabber)
 - [`POST /reservation-requests`](#request-a-tennis-court-reservation)
 - [`GET /reservation-requests`](#retrieve-a-list-of-reservation-requests)
 - [`POST /logout`](#log-out-of-courtgrabber)
@@ -116,7 +116,7 @@ Authorization: Bearer: {token}
 ```
 ```json
 {
-    "date": "2023-12-09",
+    "date": "2022-12-09",
     "start_times": [
         "1000",
         "1030"
@@ -153,7 +153,7 @@ Authorization: Bearer: {token}
 ```json
 {
     "id": "e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b",
-    "date": "2023-12-09",
+    "date": "2022-12-09",
     "start_times": [
         "1000",
         "1030"
@@ -215,7 +215,7 @@ Authorization: Bearer: {token}
     "reservation-requests": [
         {
             "id": "e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b",
-            "date": "2023-12-05",
+            "date": "2022-12-05",
             "start_times": [
                 "0700"
             ],
@@ -232,7 +232,7 @@ Authorization: Bearer: {token}
         },
         {
             "id": "7c98610d-2429-4ed8-8cc2-33123e8a6fa9",
-            "date": "2023-11-19",
+            "date": "2022-11-19",
             "start_times": [
                 "1300",
                 "1330",
@@ -250,7 +250,7 @@ Authorization: Bearer: {token}
                 "Alice Jones"
             ],
             "court": 1,
-            "start_time": "2023-11-19T13:00:00-08:00"
+            "start_time": "2022-11-19T13:00:00-08:00"
         }
     ]
 }
