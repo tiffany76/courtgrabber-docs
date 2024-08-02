@@ -1,6 +1,6 @@
 # The Courtgrabber REST API
 
-The following documentation explains the Courtgrabber REST API. If you would like to use the Courtgrabber CLI, please refer to the [user guide](./user_guide.md). 
+The following documentation explains the Courtgrabber REST API. If you would like to use the Courtgrabber CLI, please see the [user guide](./user_guide.md). 
 
 The Courtgrabber API is an HTTP-based, RESTful service that interfaces with tennis club reservation software to make court reservations on behalf of club members. Most club software sets a reservation window. With Courtgrabber, users can submit a request outside that window, automating the reservation process.
 
@@ -10,12 +10,12 @@ Courtgrabber's base URL is [https://courtgrabber.herokuapp.com/api/](https://cou
 
 A user's typical workflow might look like this: login to Courtgrabber, add a new reservation request, verify that the request was successful, and then logout. Here are the corresponding API calls for these tasks:
 
-- [`POST /login`](#logging-into-courtgrabber)
-- [`POST /reservation-requests`](#requesting-a-tennis-court-reservation)
-- [`GET /reservation-requests`](#retrieving-a-list-of-reservation-requests)
-- [`POST /logout`](#logging-out-of-courtgrabber)
+- [`POST /login`](#log-into-courtgrabber)
+- [`POST /reservation-requests`](#request-a-tennis-court-reservation)
+- [`GET /reservation-requests`](#retrieve-a-list-of-reservation-requests)
+- [`POST /logout`](#log-out-of-courtgrabber)
 
-Users can also cancel pending requests. That API call is [`DELETE /api/reservation-requests/{id}`](#canceling-a-reservation-request).
+Users can also cancel pending requests. That API call is [`DELETE /api/reservation-requests/{id}`](#cancel-a-reservation-request).
 
 ## Authentication
 
@@ -42,7 +42,7 @@ Use the Logout API call to terminate the current Courtgrabber session.
 #### `/api/reservation-requests`
 Reservation Requests is the core Courtgrabber resource. Use API calls against it to create new requests, view existing requests, or cancel requests. 
 
-## Logging into Courtgrabber
+## Login to Courtgrabber
 Authenticates a user and grants them access for a Courtgrabber session.
 
 ### URL
@@ -84,7 +84,7 @@ POST {base_url}/api/login
 }
 ```
 
-## Requesting a tennis court reservation
+## Request a tennis court reservation
 Initiates a reservation request to the tennis club's software.
 
 ### URL
@@ -116,7 +116,7 @@ Authorization: Bearer: {token}
 ```
 ```json
 {
-    "date": "2022-12-09",
+    "date": "2023-12-09",
     "start_times": [
         "1000",
         "1030"
@@ -153,7 +153,7 @@ Authorization: Bearer: {token}
 ```json
 {
     "id": "e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b",
-    "date": "2022-12-09",
+    "date": "2023-12-09",
     "start_times": [
         "1000",
         "1030"
@@ -171,7 +171,7 @@ Authorization: Bearer: {token}
 }
 ```
 
-## Retrieving a list of reservation requests
+## Retrieve a list of reservation requests
 Returns the user's reservation requests.
 
 ### URL
@@ -215,7 +215,7 @@ Authorization: Bearer: {token}
     "reservation-requests": [
         {
             "id": "e68bfb6d-a1f0-4e8a-b82f-4acbbcc3397b",
-            "date": "2022-12-05",
+            "date": "2023-12-05",
             "start_times": [
                 "0700"
             ],
@@ -232,7 +232,7 @@ Authorization: Bearer: {token}
         },
         {
             "id": "7c98610d-2429-4ed8-8cc2-33123e8a6fa9",
-            "date": "2022-11-19",
+            "date": "2023-11-19",
             "start_times": [
                 "1300",
                 "1330",
@@ -250,13 +250,13 @@ Authorization: Bearer: {token}
                 "Alice Jones"
             ],
             "court": 1,
-            "start_time": "2022-11-19T13:00:00-08:00"
+            "start_time": "2023-11-19T13:00:00-08:00"
         }
     ]
 }
 ```
 
-## Canceling a reservation request
+## Cancel a reservation request
 Deletes a pending reservation request. 
 
 !!! note
@@ -301,7 +301,7 @@ Authorization: Bearer: {token}
 }
 ```
 
-## Logging out of Courtgrabber
+## Log out of Courtgrabber
 Terminates a Courtgrabber session. 
 
 ### URL
@@ -327,7 +327,7 @@ Authorization: Bearer: {token}
 ```
 
 ## Status codes and error messages
-The following table lists the HTTP status codes and their meanings. 
+The following table lists the HTTP status codes and their definitions. 
 
 | **Code**             |   **Description**                                                                       | 
 | -------------------- | --------------------------------------------------------------------------------------- | 
@@ -336,7 +336,7 @@ The following table lists the HTTP status codes and their meanings.
 | 400 Bad Request      | Call was unsuccessful: required field(s) omitted                                        |  
 | 404 Not Found        | Call was unsuccessful: incorrect endpoint used                                          |  
 
-For unsuccessful calls, the API will return the corresponding HTTP status code with this response body:
+For unsuccessful calls, the API returns the corresponding HTTP status code with this response body:
 
 ```json
 {
