@@ -1,4 +1,4 @@
-# Welcome to Courtgrabber
+# <img src="./docs/images/courtgrabber_logo.png" alt="Courtgrabber logo" width="45"> Welcome to Courtgrabber
 
 Welcome to the source repository for the [Courtgrabber website](https://courtgrabber.netlify.app). The site is built using [MkDocs](https://www.mkdocs.org/) and is hosted on [Netlify](https://netlify.com).
 
