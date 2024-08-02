@@ -10,7 +10,7 @@ Courtgrabber's base URL is [https://courtgrabber.herokuapp.com/api/](https://cou
 
 A user's typical workflow might look like this: login to Courtgrabber, add a new reservation request, verify that the request was successful, and then logout. Here are the corresponding API calls for these tasks:
 
-- [`POST /login`](#log-into-courtgrabber)
+- [`POST /login`](#login-to-courtgrabber)
 - [`POST /reservation-requests`](#request-a-tennis-court-reservation)
 - [`GET /reservation-requests`](#retrieve-a-list-of-reservation-requests)
 - [`POST /logout`](#log-out-of-courtgrabber)

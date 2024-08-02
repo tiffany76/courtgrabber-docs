@@ -1,6 +1,6 @@
 # Getting Started
 
-The Courtgrabber CLI requires minimal set-up and only a few commands to get started.
+The Courtgrabber CLI requires minimal set up and only a few commands to get started.
 
 ## Key terminology
 

@@ -12,7 +12,7 @@ You can use your tennis club account to log into the Courtgrabber program.
 
 You see a `Login Successful` message.
 
-*Figure 2: Logging into Courtgrabber.*
+*Figure 1: Logging into Courtgrabber.*
 ![Logging into Courtgrabber.](./images/logging_into_courtgrabber.png "Logging into Courtgrabber.")
 
 ## Create a court reservation request
@@ -33,7 +33,7 @@ Courtgrabber makes it easy to request a court reservation: just follow the promp
 
 The CLI displays a message with the Reservation Request ID.
 
-*Figure 3: Creating a court reservation request.*
+*Figure 2: Creating a court reservation request.*
 ![Creating a court reservation request.](./images/creating_a_court_reservation_request.gif "Creating a court reservation request.")
 
 ## List all reservation requests
@@ -44,7 +44,7 @@ You can view all active reservation requests using one simple command.
 
 You see a table displaying all of your pending requests in chronological order.
 
-*Figure 4: Listing all reservation requests.*
+*Figure 3: Listing all reservation requests.*
 ![Listing all reservation requests.](./images/listing_all_reservation_requests.png "Listing all reservation requests.")
 
 ## Cancel a pending reservation request
@@ -60,7 +60,7 @@ While a request is still pending, you can cancel it from the Courtgrabber CLI.
 
 You see a `Reservation request {id} cancelled` message.
 
-*Figure 5: Canceling a pending reservation request.*
+*Figure 4: Canceling a pending reservation request.*
 ![Canceling a pending reservation request.](./images/canceling_a_pending_reservation_request.gif "Canceling a pending reservation request.")
 
 ## Log out of Courtgrabber
@@ -75,7 +75,7 @@ You see a `Logout Successful` message.
 
 Your terminal session is closed, and you can safely close the CLI window.
 
-*Figure 6: Logging out of Courtgrabber.*
+*Figure 5: Logging out of Courtgrabber.*
 ![Logging out of Courtgrabber.](./images/logging_out_of_courtgrabber.gif "Logging out of Courtgrabber.")
 
 ## Get help with Courtgrabber
@@ -86,5 +86,5 @@ If you forget which command to use, you can always ask Courtgrabber for help.
 
 Courtgrabber displays its help screen, which includes a list of available commands.
 
-*Figure 7: Getting help with Courtgrabber.*
+*Figure 6: Getting help with Courtgrabber.*
 ![Getting help with Courtgrabber.](./images/getting_help_with_courtgrabber.png "Getting help with Courtgrabber.")
