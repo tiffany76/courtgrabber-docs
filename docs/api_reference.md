@@ -1,6 +1,6 @@
 # The Courtgrabber REST API
 
-The following documentation explains the Courtgrabber REST API. If you want to use the Courtgrabber CLI, please see the [user guide](./user_guide.md). 
+The following documentation explains the Courtgrabber REST API. If you want to use the Courtgrabber CLI, see the [user guide](./user_guide.md). 
 
 The Courtgrabber API is an HTTP-based, RESTful service that interfaces with tennis club reservation software to make court reservations on behalf of club members. Most club software sets a reservation window. With Courtgrabber, users can submit a request outside that window, automating the reservation process.
 
@@ -8,18 +8,18 @@ Courtgrabber's base URL is [https://courtgrabber.herokuapp.com/api/](https://cou
 
 ## Workflow 
 
-A typical workflow might look like this: login to Courtgrabber, add a new reservation request, verify that the request was successful, and then logout. Here are the corresponding API calls for these tasks:
+Your typical workflow might look like this: login to Courtgrabber, add a new reservation request, verify that the request was successful, and then logout. Here are the corresponding API calls for these tasks:
 
 - [`POST /login`](#login-to-courtgrabber)
 - [`POST /reservation-requests`](#request-a-tennis-court-reservation)
 - [`GET /reservation-requests`](#retrieve-a-list-of-reservation-requests)
 - [`POST /logout`](#log-out-of-courtgrabber)
 
-You can also cancel pending requests with API call [`DELETE /api/reservation-requests/{id}`](#cancel-a-reservation-request).
+You can also cancel pending requests with an API request to [`DELETE /api/reservation-requests/{id}`](#cancel-a-reservation-request).
 
 ## Authentication
 
-The first cal to `/login` specifies the member's club email address and password as a JSON object in the body. A response of `200 OK` includes a bearer token with a validity of 30 minutes. All other endpoints, including `/logout`, take the bearer token in the header (`Authorization: Bearer {token}`). Each use of the token, except with `/logout`, extends the token's validity for another 30 minutes.
+The first call to `/login` specifies the member's club email address and password as a JSON object in the body. A response of `200 OK` includes a bearer token with a validity of 30 minutes. All other endpoints, including `/logout`, take the bearer token in the header (`Authorization: Bearer {token}`). Each use of the token, except with `/logout`, extends the token's validity for another 30 minutes.
 
 # Reference documentation
 
